@@ -66,4 +66,9 @@ spec:
             canarySubsetName: canary
             stableSubsetName: stable
       steps:
-        <SET-STEPS>
+      # 1 canary pod (10% of spec.replicas)
+      - setCanaryScale:
+          weight: 10
+      # 90% of traffic to the 1 canary pod
+      - setWeight: 90
+      - pause: {}
